@@ -3,11 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Code Quiz</title>
 </head>
 <body class="content">
-    <h1 class="heading">Coding Quiz Challenge</h1>
+    <header>
+        <h1>Coding Quiz Challenge</h1>
+    </header>
+    <div>
+        <button id="startquiz">Start</button>
+    </div>
+    <div id="quiz">
+        <h2 id="quizquestion">Questions</h2>
+        <button data-val="a" id="answerone">Answer 1</button>
+        <button data-val="b" id="answertwo">Answer 2</button>
+        <button data-val="c" id="answerthree">Answer 3</button>
+        <button data-val="d" id="answerfour">Answer 4</button>
+    </div>
+    <div id="userinput">
+       <form>
+        <label>Initails:</label>
+        <input type="text" id="userinititals" name="username"><br><br>
+        <button id="usersubmit">Submit</button>
+       </form>
+    </div>
+    <class="time">
+    <!--This is my timer-->
+    </div>
     <div>
         <ul>    
             <li>What is JavaScript?</li>
@@ -17,5 +40,6 @@
             <li>What is a coding bootcamp?</li>
         </ul>
     </div>
+    <script src="./script.js"></script>
 </body>
 </html>
