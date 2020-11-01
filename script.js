@@ -64,40 +64,18 @@ var myQuestions = [
     },
   ];
 
-var secondsLeft = 30;
+var secondsLeft = 10;
 
 function setTime() {
   var timerInterval = setInterval(function() {
     secondsLeft--;
     timeEl.textContent = "Time Left: " + secondsLeft;
+
+    if(secondsLeft === 0) {
+      clearInterval(timerInterval); // This might cause issues on my last question
+    }
+
     }, 1000);
 }
-
-// function firstQuestion() {
-//         question: "What is JavaScript?",
-//         answers: 
-//         a: "a programming language";
-//         b: "a brand of computers";
-//         c: "a type of chemical";
-//         correctAnswer: "c";
-      
-//       timeEl.textContent = "";
-  
-//       if(userInput === 0) {
-//         clearInterval(timerInterval);
-//         sendMessage();
-//       }
-  
-//     };
-
-function sendMessage() {
-  timeEl.textContent = " ";
-
-  var imgEl = document.createElement("img");
-
-  imgEl.setAttribute("src", "images/image_1.jpg");
-  mainEl.appendChild(imgEl);
-
-}
-
 setTime();
+
