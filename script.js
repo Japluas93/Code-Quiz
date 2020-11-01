@@ -9,7 +9,7 @@
 // THEN the game is over
 // WHEN the game is over
 // THEN I can save my initials and score
-var timeEl = document.querySelector(".time");
+var timeEl = document.querySelector(".timer");
 var startEl = document.getElementById("startquiz")
 var quizEl = document.getElementById("quiz")
 var quizQuestion = document.getElementById("quizquestion")
