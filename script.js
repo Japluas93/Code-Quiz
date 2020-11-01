@@ -10,59 +10,71 @@
 // WHEN the game is over
 // THEN I can save my initials and score
 var timeEl = document.querySelector(".timer");
-var startEl = document.getElementById("startquiz")
-var quizEl = document.getElementById("quiz")
-var quizQuestion = document.getElementById("quizquestion")
-var firstAnswer = document.getElementById("answerone")
-var secondAnswer = document.getElementById("answertwo")
-var thirdAnswer = document.getElementById("answerthree")
-var fourthAnswer = document.getElementById("answerfour")
-var userInput = document.getElementById("userinput")
-var userInitials = document.getElementById("userinititals")
-var userSubmit = document.getElementById("usersubmit")
-quizEl.style.display = "none"
+var startEl = document.getElementById("startquiz");
+var quizEl = document.getElementById("quiz");
+var quizQuestion = document.getElementById("quizquestion");
+var firstAnswer = document.getElementById("a");
+var secondAnswer = document.getElementById("b");
+var thirdAnswer = document.getElementById("c");
+var fourthAnswer = document.getElementById("d");
+var userInput = document.getElementById("userinput");
+var userInitials = document.getElementById("userinititals");
+var submitEl = document.getElementById("submit");
+var submissionResponseEl = document.getElementById("response");
+var quizQuestionIndex = 0;
+// quizEl.style.display = "none"
 var myQuestions = [
     {
     question: "What is JavaScript?",
     answers: {
-        a: "a programming language",
-        b: "a brand of computers",
-        c: "a type of chemical",
-        d: "a clothing brand"
+        answera: "a programming language",
+        answerb: "a brand of computers",
+        answerc: "a type of chemical",
+        answerd: "a clothing brand"
         },
         correctAnswer: "a"
     },
     {
     question: "What is CSS used for?",
     answers: {
-        a: "to save data",
-        b: "to style our webpage",
-        c: "to add functionality to our webpage",
-        d: "to make our computer operate more efficiently"
+      answera: "to save data",
+      answerb: "to style our webpage",
+      answerc: "to add functionality to our webpage",
+      answerd: "to make our computer operate more efficiently"
         },
         correctAnswer: "b"
     },
     {
     question: "Which applications can be used to write code?",
     answers: {
-        a: "adobe photoshop",
-        b: "microsoft word",
-        c: "vs code",
-        d: "spotify"
+      answera: "adobe photoshop",
+      answerb: "microsoft word",
+      answerc: "vs code",
+      answerd: "spotify"
         },
         correctAnswer: "c"
     },
     {
     question: "What is Git?",
     answers: {
-        a: "a type of food",
-        b: "microsoft word",
-        c: "",
+      answera: "a type of food",
+      answerb: "microsoft word",
+        answerc: "",
         d: "a version control system"
         },
         correctAnswer: "d"
     },
   ];
+  function generateQuiz () {
+   quizintro.style.display = "none";
+  }
+var currentQuestion = myQuestions[quizQuestionIndex];
+  quizQuestion.innerHTML = "<h2>" + currentQuestion.question + "</h2>";
+  a.innerHTML = currentQuestion.answera;
+  b.innerHTML = currentQuestion.answerb;
+  c.innerHTML = currentQuestion.answerc;
+  d.innerHTML = currentQuestion.answerd;
+  
 
 var secondsLeft = 10;
 
@@ -79,3 +91,21 @@ function setTime() {
 }
 setTime();
 
+startEl.addEventListener("click", function() {
+  console.log("Hello")
+});
+
+
+// Questons Functions
+
+
+
+
+submitEl.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  console.log(event);
+  
+  var response = "Thank you for your submission " + userInitials.value + "! Thank for taking the time to take our quiz.";
+  submissionResponseEl.textContent = response;
+});
