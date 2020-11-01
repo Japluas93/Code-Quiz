@@ -3,6 +3,10 @@
     text-align: center; 
 }
 
+.timer {
+    border-style: dashed;
+}
+
 header {
     font-weight: bold;
 }
