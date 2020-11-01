@@ -8,27 +8,29 @@
     <title>Code Quiz</title>
 </head>
 <body class="content">
-    <h5 class="timer"></h5>
-    <!--This is my timer-->
-    <header>
+    <div id="quizintro">
         <h1>Coding Quiz Challenge</h1>
         <p>This is a coding challenge. You will have 30 seconds to complete it. Do the best you can.</p>
-    </header>
-    <div>
         <button id="startquiz">Start</button>
     </div>
     <div id="quiz">
-        <h2 id="quizquestion">Questions</h2>
-        <button data-val="a" id="answerone">Answer 1</button>
-        <button data-val="b" id="answertwo">Answer 2</button>
-        <button data-val="c" id="answerthree">Answer 3</button>
-        <button data-val="d" id="answerfour">Answer 4</button>
+        <div class="timer">Time Left:</div>
+        <div id="quizquestion">
+            <h2>Questions</h2>
+        </div>
+        <button id="a" onclick="checkAnswer('a')">a</button>
+        <button id="b" onclick="checkAnswer('b')">b</button>
+        <button id="c" onclick="checkAnswer('c')">c</button>
+        <button id="d" onclick="checkAnswer('d')">d</button>
     </div>
     <div id="userinput">
        <form>
-        <label>Initails:</label>
-        <input type="text" id="userinititals" name="username"><br><br>
-        <button id="usersubmit">Submit</button>
+        <label>Initials:</label>
+        <input type="text" id="userinititals" name="username" placeholder="Please enter your initials.">
+        <button id="submit">Submit</button>
+        <div>
+            <h4 id="response"></h4>
+        </div>
        </form>
     </div>
     <script src="./script.js"></script>
