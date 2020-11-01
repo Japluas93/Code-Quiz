@@ -69,7 +69,7 @@ var secondsLeft = 30;
 function setTime() {
   var timerInterval = setInterval(function() {
     secondsLeft--;
-    timeEl.textContent = "Time Left:" + secondsLeft;
+    timeEl.textContent = "Time Left: " + secondsLeft;
     }, 1000);
 }
 
