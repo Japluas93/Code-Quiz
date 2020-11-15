@@ -18,13 +18,14 @@ var secondAnswer = document.getElementById("b");
 var thirdAnswer = document.getElementById("c");
 var fourthAnswer = document.getElementById("d");
 var userInput = document.getElementById("userinput");
-var userInitials = document.getElementById("userinititals");
+var userInitials = document.getElementById("userinitials");
 var submitEl = document.getElementById("submit");
 var submissionResponseEl = document.getElementById("response");
 var correctAnswer = document.getElementById("correctAnswer");
 var quizQuestionIndex = 0;
 var userScore = 0;
-var secondsLeft = 60;
+var secondsLeft = 30;
+var timerInterval
 quizEl.style.display = "none"
 userInput.style.display = "none";
 var myQuestions = [
@@ -91,18 +92,21 @@ var currentQuestion = myQuestions[quizQuestionIndex];
       quizQuestionIndex++
       generateQuiz()
     }
-    else {alert("Game Over!")}
+    else {alert("Game Over!")
+    clearInterval(timerInterval)
+    endQuiz()}
   }
 
 
 
 function setTime() {
-  var timerInterval = setInterval(function() {
+  timerInterval = setInterval(function() {
     secondsLeft--;
     timeEl.textContent = "Time Left: " + secondsLeft;
 
     if(secondsLeft === 0) {
-      clearInterval(timerInterval); // This might cause issues on my last question
+      clearInterval(timerInterval);
+      endQuiz()
     }
 
     }, 1000);
@@ -110,15 +114,20 @@ function setTime() {
 
 
 startEl.addEventListener("click", function() {
-  console.log("Hello")
   quizEl.style.display = "block"
   startEl.style.display = "none"
   generateQuiz()
   setTime();
 });
 
+function endQuiz (){
+  quizEl.style.display = "none";
+  userInput.style.display = "block";
+  var questionScore = document.createElement("h3");
+  questionScore.innerText = "Your score is: " + secondsLeft;
+  userInput.prepend(questionScore);
 
-// Questons Functions
+}
 
 
 
@@ -127,7 +136,23 @@ submitEl.addEventListener("click", function(event) {
   event.preventDefault();
 
   console.log(event);
-  
+  var userlog = JSON.parse(localStorage.getItem("codeQuiz"))|| [];
+  var userInitials = document.getElementById("userinitials").value;
+  userlog.push({
+    user: userInitials,
+    score: secondsLeft
+  })
+  localStorage.setItem("codeQuiz",JSON.stringify(userlog))
+  displayUserScore();
   var response = "Thank you for your submission " + userInitials.value + "! Thank for taking the time to take our quiz.";
   submissionResponseEl.textContent = response;
 });
+
+function displayUserScore(){
+  var userlog = JSON.parse(localStorage.getItem("codeQuiz"))|| [];
+  for (let i =0; i < userlog.length; i++){
+    var element = document.createElement("p");
+    element.textContent = "user " + userlog[i].user + "score: " + userlog[i].score;
+    document.getElementById("display").prepend(element);
+  }
+}
