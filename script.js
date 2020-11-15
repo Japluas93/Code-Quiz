@@ -21,8 +21,12 @@ var userInput = document.getElementById("userinput");
 var userInitials = document.getElementById("userinititals");
 var submitEl = document.getElementById("submit");
 var submissionResponseEl = document.getElementById("response");
+var correctAnswer = document.getElementById("correctAnswer");
 var quizQuestionIndex = 0;
-// quizEl.style.display = "none"
+var userScore = 0;
+var secondsLeft = 60;
+quizEl.style.display = "none"
+userInput.style.display = "none";
 var myQuestions = [
     {
     question: "What is JavaScript?",
@@ -66,17 +70,31 @@ var myQuestions = [
     },
   ];
   function generateQuiz () {
-   quizintro.style.display = "none";
-  }
+  //  quizintro.style.display = "none";
+  
 var currentQuestion = myQuestions[quizQuestionIndex];
   quizQuestion.innerHTML = "<h2>" + currentQuestion.question + "</h2>";
-  a.innerHTML = currentQuestion.answera;
-  b.innerHTML = currentQuestion.answerb;
-  c.innerHTML = currentQuestion.answerc;
-  d.innerHTML = currentQuestion.answerd;
-  
+  a.innerHTML = currentQuestion.answers.answera;
+  b.innerHTML = currentQuestion.answers.answerb;
+  c.innerHTML = currentQuestion.answers.answerc;
+  d.innerHTML = currentQuestion.answers.answerd;
+  }
+  function checkAnswer (choice) {
+    if (choice == myQuestions[quizQuestionIndex]){
+      userScore++
+      correctAnswer.innerText = "Right Answer!"
+    }
+    else {
+      secondsLeft = secondsLeft -5 
+    }
+    if (quizQuestionIndex < myQuestions.length - 1){
+      quizQuestionIndex++
+      generateQuiz()
+    }
+    else {alert("Game Over!")}
+  }
 
-var secondsLeft = 10;
+
 
 function setTime() {
   var timerInterval = setInterval(function() {
@@ -89,10 +107,14 @@ function setTime() {
 
     }, 1000);
 }
-setTime();
+
 
 startEl.addEventListener("click", function() {
   console.log("Hello")
+  quizEl.style.display = "block"
+  startEl.style.display = "none"
+  generateQuiz()
+  setTime();
 });
 
 
