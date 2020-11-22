@@ -24,7 +24,7 @@ var submissionResponseEl = document.getElementById("response");
 var correctAnswer = document.getElementById("correctAnswer");
 var quizQuestionIndex = 0;
 var userScore = 0;
-var secondsLeft = 30;
+var secondsLeft = 60;
 var timerInterval
 quizEl.style.display = "none"
 userInput.style.display = "none";
@@ -64,8 +64,8 @@ var myQuestions = [
     answers: {
       answera: "a type of food",
       answerb: "microsoft word",
-        answerc: "",
-        d: "a version control system"
+      answerc: "A toy",
+      answerd: "a version control system"
         },
         correctAnswer: "d"
     },
@@ -92,7 +92,9 @@ var currentQuestion = myQuestions[quizQuestionIndex];
       quizQuestionIndex++
       generateQuiz()
     }
-    else {alert("Game Over!")
+    else {
+    alert("Game Over!");
+    console.log(secondsLeft);
     clearInterval(timerInterval)
     endQuiz()}
   }
@@ -126,6 +128,7 @@ function endQuiz (){
   var questionScore = document.createElement("h3");
   questionScore.innerText = "Your score is: " + secondsLeft;
   userInput.prepend(questionScore);
+  displayUserScore()
 
 }
 
@@ -147,12 +150,20 @@ submitEl.addEventListener("click", function(event) {
   var response = "Thank you for your submission " + userInitials.value + "! Thank for taking the time to take our quiz.";
   submissionResponseEl.textContent = response;
 });
+document.getElementById("clearbutton").addEventListener("click", function(event){
+  event.preventDefault()
+  localStorage.clear()
+  document.getElementById("display").innerHTML="<h5>High Scores have been cleared</h5>"
+})
+
+
 
 function displayUserScore(){
   var userlog = JSON.parse(localStorage.getItem("codeQuiz"))|| [];
+  document.getElementById("display").innerHTML= "<h5>High Scores</h5>"
   for (let i =0; i < userlog.length; i++){
     var element = document.createElement("p");
     element.textContent = "user " + userlog[i].user + "score: " + userlog[i].score;
-    document.getElementById("display").prepend(element);
+    document.getElementById("display").append(element);
   }
 }
